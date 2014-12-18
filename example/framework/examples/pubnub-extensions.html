@@ -118,7 +118,7 @@
 
 <script>
 
-var palette = new Rickshaw.Color.Palette( { scheme: 'classic9' } );
+var palette = new Rickshaw.Color.Palette( { scheme: 'spectrum14' } );
 
 // instantiate our graph!
 
@@ -223,10 +223,11 @@ var init = function() {
 
 new Rickshaw.Fixtures.PubNub({
   subscribe_key: 'demo',
-  channel: 'rickshaw-channel-2',
+  channel: 'rickshaw-channel-22',
   history: true,
   graph: graph,
   connect: init,
+  limit: 500
 });
 
 </script>
@@ -255,20 +256,37 @@ var pubnub = PUBNUB.init({
   subscribe_key: 'demo'
 });
 
+var lastdata = [
+  Math.round(Math.random() * 99), 
+  Math.round(Math.random() * 99), 
+  Math.round(Math.random() * 99), 
+  Math.round(Math.random() * 99), 
+  Math.round(Math.random() * 99), 
+  Math.round(Math.random() * 99), 
+  Math.round(Math.random() * 99)
+];
+
 setInterval(function(){
+
+  var a = 10;
+
+  var newdata = [
+    lastdata[0] - (Math.random() * a) + (Math.random() * a),
+    lastdata[1] - (Math.random() * a) + (Math.random() * a),
+    lastdata[2] - (Math.random() * a) + (Math.random() * a),
+    lastdata[3] - (Math.random() * a) + (Math.random() * a),
+    lastdata[4] - (Math.random() * a) + (Math.random() * a),
+    lastdata[5] - (Math.random() * a) + (Math.random() * a),
+    lastdata[6] - (Math.random() * a) + (Math.random() * a)
+  ]
+
+  lastdata = newdata;
+
   pubnub.publish({
-    channel: 'rickshaw-channel-2',
+    channel: 'rickshaw-channel-22',
     message: {
-      y: [
-        Math.random() * 99, 
-        Math.random() * 99, 
-        Math.random() * 99, 
-        Math.random() * 99, 
-        Math.random() * 99, 
-        Math.random() * 99, 
-        Math.random() * 99
-    ],
-      x: new Date().getTime()
+      y: newdata,
+      x: Math.floor(new Date().getTime() / 1000)
     }
   })
 }, 1000);

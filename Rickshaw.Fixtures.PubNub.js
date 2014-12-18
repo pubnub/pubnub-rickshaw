@@ -13,6 +13,8 @@ Rickshaw.Fixtures.PubNub = function (options) {
   options.limit = options.limit || 50;
   options.history = options.history || false;
   options.connect = options.connect || function () {};
+  options.channel = options.channel || false;
+  options.ready - options.ready || false;
 
   // initialize pubnub
   self.pubnub = PUBNUB.init({
@@ -22,6 +24,58 @@ Rickshaw.Fixtures.PubNub = function (options) {
 
   // handy function to run something once
   var first = true;
+
+  self.page = function(count) {
+
+    all_messages = [];
+
+    getAllMessages = function(timetoken) {
+       self.pubnub.history({
+        channel: options.channel,
+        start: timetoken,
+         callback: function(payload) {
+           
+           var msgs = payload[0];
+           var start = payload[1];
+           var end = payload[2];
+
+           // if msgs were retrieved, do something useful with them
+           if (msgs != undefined && msgs.length > 0) {
+
+             console.log(msgs.length);
+             console.log("start: " + start);
+             console.log("end: " + end);
+
+             msgs.reverse();
+
+             i = 0;
+             while(i < msgs.length) {
+               all_messages.push(msgs[[i]]);
+               i++;
+             }
+
+           }
+
+           // if 100 msgs were retrieved, there might be more; call history again
+           if (all_messages.length < options.limit) {
+             getAllMessages(start);
+           } else {
+
+            all_messages.reverse();
+             i = 0;
+             while(i < all_messages.length) {              // 
+               self.pushMessage(all_messages[i]);
+               i++;
+             }
+           }
+
+         }
+       });
+     };
+
+     getAllMessages();
+
+  }
 
   // push pubnub message data to end of series
   self.pushMessage = function (m) {
@@ -68,24 +122,8 @@ Rickshaw.Fixtures.PubNub = function (options) {
   });
 
   if(options.history) {
-
-    // fetch last x messages from pubnub
-    self.pubnub.history({
-      count: options.limit,
-      channel: options.channel,
-      callback: function (message) { 
-
-        // add the messages to the series data
-        i = 0;
-        while(i < message[0].length) {
-          self.pushMessage(message[0][i]);
-          i++;
-        }
-
-      }
-
-    });
-
+    // fetch last page from pubnub
+    self.page();
   }
 
 };
