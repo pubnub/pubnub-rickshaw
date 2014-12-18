@@ -7,9 +7,6 @@
 <div id="chart"></div>
 
 <script>
-
-var palette = new Rickshaw.Color.Palette( { scheme: 'classic9' } );
-
 var graph = new Rickshaw.Graph( {
     element: document.getElementById("chart"),
     width: 900,
@@ -34,8 +31,8 @@ var graph = new Rickshaw.Graph( {
 graph.render();
 
 new Rickshaw.Fixtures.PubNub({
-    channel: 'rickshaw-channel-1',
-    graph: graph
+  channel: 'rickshaw-channel-1',
+  graph: graph
 });
 
 </script>
@@ -50,7 +47,7 @@ new Rickshaw.Fixtures.PubNub({
   packets to the pubnub.subscribe() call waiting inside the 
   framework. 
 
-  Notice how the channel name matches.
+  Notice how the subscribe_key and channel name matches.
 
   You probably want to publish data from the backend instead. 
   Check out our docs for more info:
@@ -60,20 +57,20 @@ new Rickshaw.Fixtures.PubNub({
 */
 
 var pubnub = PUBNUB.init({
-    publish_key: 'demo',
-    subscribe_key: 'demo'
+  publish_key: 'demo',
+  subscribe_key: 'demo'
 });
 
 setInterval(function(){
-    pubnub.publish({
-        channel: 'rickshaw-channel-1',
-        message: {
-            y: [
-                Math.random() * 99, 
-                Math.random() * 99
-            ],
-            x: new Date().getTime()
-        }
-    })
+  pubnub.publish({
+    channel: 'rickshaw-channel-1',
+    message: {
+      y: [
+        Math.random() * 99, 
+        Math.random() * 99
+      ],
+      x: new Date().getTime()
+    }
+  })
 }, 1000);
 </script>

@@ -9,7 +9,6 @@ Rickshaw.Fixtures.PubNub = function (options) {
   var self = this;
 
   // set default options
-  options.publish_key = options.publish_key || 'demo';
   options.subscribe_key = options.subscribe_key || 'demo';
   options.limit = options.limit || 50;
   options.history = options.history || false;
@@ -20,6 +19,9 @@ Rickshaw.Fixtures.PubNub = function (options) {
     publish_key: options.publish_key,
     subscribe_key: options.subscribe_key
   });
+
+  // handy function to run something once
+  var first = true;
 
   // push pubnub message data to end of series
   self.pushMessage = function (m) {
@@ -47,6 +49,11 @@ Rickshaw.Fixtures.PubNub = function (options) {
 
     }
 
+    if(first) {
+      options.connect();
+    }
+    first = false;
+
     // render the graph
     options.graph.update();
 
@@ -56,9 +63,7 @@ Rickshaw.Fixtures.PubNub = function (options) {
   self.pubnub.subscribe({
     channel: options.channel,
     message: function (m) {
-
       self.pushMessage(m);
-
     },
     connect: options.connect
   });

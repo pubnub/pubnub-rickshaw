@@ -231,11 +231,10 @@ var init = function() {
     graph: graph
   });
 
-}
+};
 
 new Rickshaw.Fixtures.PubNub({
   subscribe_key: 'demo',
-  publish_key: 'demo',
   channel: 'rickshaw-channel-2',
   history: true,
   graph: graph,
@@ -254,7 +253,7 @@ new Rickshaw.Fixtures.PubNub({
   packets to the pubnub.subscribe() call waiting inside the 
   framework. 
 
-  Notice how the channel name matches.
+  Notice how the subscribe_key and channel name matches.
 
   You probably want to publish data from the backend instead. 
   Check out our docs for more info:
