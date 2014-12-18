@@ -1,0 +1,78 @@
+<!doctype html>
+<script src="http://cdn.pubnub.com/pubnub.min.js"></script>
+<script src="../vendor/d3.v3.js"></script>
+<script src="../rickshaw.min.js"></script>
+<script src="../src/js/Rickshaw.Fixtures.PubNub.js"></script>
+<script src="../src/js/Rickshaw.Color.Palette.js"></script>
+
+<div id="chart"></div>
+
+<script>
+
+var palette = new Rickshaw.Color.Palette( { scheme: 'classic9' } );
+
+var graph = new Rickshaw.Graph( {
+    element: document.getElementById("chart"),
+    width: 900,
+    height: 500,
+    renderer: 'area',
+    stroke: true,
+    preserve: true,
+    series: [
+        {
+            color: palette.color(),
+            name: 'Google',
+            data: []
+        },
+        {
+            color: palette.color(),
+            name: 'Facebook',
+            data: []
+        },
+        {
+            color: palette.color(),
+            name: 'PubNub',
+            data: []
+        },
+        {
+            color: palette.color(),
+            name: 'Reddit',
+            data: []
+        },
+        {
+            color: palette.color(),
+            name: 'Imgur',
+            data: []
+        }
+    ]
+} );
+
+graph.render();
+
+var pubsub = new Rickshaw.Fixtures.PubNub({
+    channel: 'rickshaw_channel-4',
+    graph: graph,
+    connect: init
+});
+
+var pubnub = PUBNUB.init({
+    publish_key: 'demo',
+    subscribe_key: 'demo'
+});
+
+setInterval(function(){
+    pubnub.publish({
+        channel: 'rickshaw_channel-4',
+        message: {
+            y: [
+                Math.random() * 99, 
+                Math.random() * 99, 
+                Math.random() * 99, 
+                Math.random() * 99, 
+                Math.random() * 99
+            ],
+            x: new Date().getTime()
+        }
+    })
+}, 1000);
+</script>
