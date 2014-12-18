@@ -44,7 +44,7 @@
   <script src="../src/js/Rickshaw.Graph.Axis.Y.js"></script>
 
   <script src="http://cdn.pubnub.com/pubnub.min.js"></script>
-  <script src="../src/js/Rickshaw.Fixtures.PubNub.js"></script>
+  <script src="../../../Rickshaw.Fixtures.PubNub.js"></script>
 
   <script src="js/extensions.js"></script>
 </head>
@@ -53,7 +53,7 @@
 <div id="content">
 
   <form id="side_panel">
-    <h1>Random Data in the Future</h1>
+    <h1>Random Data from PubNub</h1>
     <section><div id="legend"></div></section>
     <section>
       <div id="renderer_form" class="toggler">
@@ -235,10 +235,31 @@ var init = function() {
 }
 
 var pubsub = new Rickshaw.Fixtures.PubNub({
-  channel: 'rickshaw_channel-48',
+  channel: 'rickshaw-channel-2',
   graph: graph,
   connect: init
 });
+
+</script>
+<script>
+/*
+
+  The code below is not part of the Rickshaw.Fixtures.PubNub extension.
+
+  ===========
+
+  This uses the included PubNub library to pubnub.publish() 
+  packets to the pubnub.subscribe() call waiting inside the 
+  framework. 
+
+  Notice how the channel name matches.
+
+  You probably want to publish data from the backend instead. 
+  Check out our docs for more info:
+
+  http://www.pubnub.com/docs
+
+*/
 
 var pubnub = PUBNUB.init({
   publish_key: 'demo',
@@ -247,7 +268,7 @@ var pubnub = PUBNUB.init({
 
 setInterval(function(){
   pubnub.publish({
-    channel: 'rickshaw_channel-48',
+    channel: 'rickshaw-channel-2',
     message: {
       y: [
         Math.random() * 99, 

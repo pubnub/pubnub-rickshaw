@@ -3,7 +3,6 @@
 <script src="../vendor/d3.v3.js"></script>
 <script src="../rickshaw.min.js"></script>
 <script src="../src/js/Rickshaw.Fixtures.PubNub.js"></script>
-<script src="../src/js/Rickshaw.Color.Palette.js"></script>
 
 <div id="chart"></div>
 
@@ -20,40 +19,49 @@ var graph = new Rickshaw.Graph( {
     preserve: true,
     series: [
         {
-            color: palette.color(),
-            name: 'Google',
+            color: 'steelblue',
+            name: 'Cats',
             data: []
         },
         {
-            color: palette.color(),
-            name: 'Facebook',
-            data: []
-        },
-        {
-            color: palette.color(),
-            name: 'PubNub',
-            data: []
-        },
-        {
-            color: palette.color(),
-            name: 'Reddit',
-            data: []
-        },
-        {
-            color: palette.color(),
-            name: 'Imgur',
+            color: 'lightblue',
+            name: 'Dogs',
             data: []
         }
     ]
-} );
+});
 
-graph.render();
+
+function init() {
+    graph.render();
+}
 
 var pubsub = new Rickshaw.Fixtures.PubNub({
-    channel: 'rickshaw_channel-4',
+    channel: 'rickshaw-channel-1',
     graph: graph,
     connect: init
 });
+
+</script>
+<script>
+/*
+
+  The code below is not part of the Rickshaw.Fixtures.PubNub extension.
+
+  ===========
+
+  This uses the included PubNub library to pubnub.publish() 
+  packets to the pubnub.subscribe() call waiting inside the 
+  framework. 
+
+  Notice how the channel name matches.
+
+  You probably want to publish data from the backend instead. 
+  Check out our docs for more info:
+
+  http://www.pubnub.com/docs
+
+*/
 
 var pubnub = PUBNUB.init({
     publish_key: 'demo',
@@ -62,12 +70,9 @@ var pubnub = PUBNUB.init({
 
 setInterval(function(){
     pubnub.publish({
-        channel: 'rickshaw_channel-4',
+        channel: 'rickshaw-channel-1',
         message: {
             y: [
-                Math.random() * 99, 
-                Math.random() * 99, 
-                Math.random() * 99, 
                 Math.random() * 99, 
                 Math.random() * 99
             ],
