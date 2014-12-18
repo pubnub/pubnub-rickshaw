@@ -3,6 +3,8 @@ Pubnub + Rickshaw
 
 Make your Rickshaw graphs realtime with PubNub.
 
+![](http://i.imgur.com/yxT6JrU.gif)
+
 ## Quickstart
 
 ```
