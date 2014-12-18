@@ -162,74 +162,62 @@ var graph = new Rickshaw.Graph( {
   ]
 });
 
-var legend = new Rickshaw.Graph.Legend( {
-  graph: graph,
-  element: document.getElementById('legend')
-});
-
-graph.render();
 
 var init = function() {
 
+  graph.render();
   var preview = new Rickshaw.Graph.RangeSlider( {
     graph: graph,
     element: document.getElementById('preview'),
   } );
-
   var hoverDetail = new Rickshaw.Graph.HoverDetail( {
     graph: graph,
     xFormatter: function(x) {
       return new Date(x * 1000).toString();
     }
   } );
-
   var annotator = new Rickshaw.Graph.Annotate( {
     graph: graph,
     element: document.getElementById('timeline')
   } );
-
+  var legend = new Rickshaw.Graph.Legend( {
+    graph: graph,
+    element: document.getElementById('legend')
+  } );
   var shelving = new Rickshaw.Graph.Behavior.Series.Toggle( {
     graph: graph,
     legend: legend
   } );
-
   var order = new Rickshaw.Graph.Behavior.Series.Order( {
     graph: graph,
     legend: legend
   } );
-
   var highlighter = new Rickshaw.Graph.Behavior.Series.Highlight( {
     graph: graph,
     legend: legend
   } );
-
   var smoother = new Rickshaw.Graph.Smoother( {
     graph: graph,
     element: document.querySelector('#smoother')
   } );
-
   var ticksTreatment = 'glow';
-
   var xAxis = new Rickshaw.Graph.Axis.Time( {
     graph: graph,
     ticksTreatment: ticksTreatment,
     timeFixture: new Rickshaw.Fixtures.Time.Local()
   } );
-
   xAxis.render();
-
   var yAxis = new Rickshaw.Graph.Axis.Y( {
     graph: graph,
     tickFormat: Rickshaw.Fixtures.Number.formatKMBT,
     ticksTreatment: ticksTreatment
   } );
-
   yAxis.render();
-
   var controls = new RenderControls( {
     element: document.querySelector('form'),
     graph: graph
-  });
+  } );
+  // add some data every so often
 
 };
 

@@ -70,6 +70,7 @@ new Rickshaw.Fixtures.PubNub({
 </script>
 ```
 
+## Publish Messages
 
 This uses the included PubNub library to pubnub.publish() 
 packets to the pubnub.subscribe() call waiting inside the 
@@ -103,10 +104,3 @@ setInterval(function(){
 }, 1000);
 </script>
 ``` 
-
-```
-options.subscribe_key = 'demo';
-options.limit = 50;
-options.history = false;
-options.connect = function (){};
-```

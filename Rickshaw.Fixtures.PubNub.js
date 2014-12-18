@@ -64,8 +64,7 @@ Rickshaw.Fixtures.PubNub = function (options) {
     channel: options.channel,
     message: function (m) {
       self.pushMessage(m);
-    },
-    connect: options.connect
+    }
   });
 
   if(options.history) {
