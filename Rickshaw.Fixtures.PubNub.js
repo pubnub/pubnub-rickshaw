@@ -7,7 +7,6 @@ Rickshaw.Fixtures.PubNub = function (options) {
   }
 
   var self = this;
-  var has_started = false;
 
   // set default options
   options.publish_key = options.publish_key || 'demo';
@@ -60,13 +59,8 @@ Rickshaw.Fixtures.PubNub = function (options) {
 
       self.pushMessage(m);
 
-      // if this is the first message, fire the connect function
-      if(!has_started) {
-        options.connect();
-        has_started = true;
-      }
-
-    }
+    },
+    connect: options.connect
   });
 
   if(options.history) {

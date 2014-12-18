@@ -160,11 +160,16 @@ var graph = new Rickshaw.Graph( {
       name: 'New York'
     }
   ]
-} );
+});
+
+var legend = new Rickshaw.Graph.Legend( {
+  graph: graph,
+  element: document.getElementById('legend')
+});
+
+graph.render();
 
 var init = function() {
-
-  graph.render();
 
   var preview = new Rickshaw.Graph.RangeSlider( {
     graph: graph,
@@ -181,12 +186,6 @@ var init = function() {
   var annotator = new Rickshaw.Graph.Annotate( {
     graph: graph,
     element: document.getElementById('timeline')
-  } );
-
-  var legend = new Rickshaw.Graph.Legend( {
-    graph: graph,
-    element: document.getElementById('legend')
-
   } );
 
   var shelving = new Rickshaw.Graph.Behavior.Series.Toggle( {
@@ -235,9 +234,12 @@ var init = function() {
 }
 
 var pubsub = new Rickshaw.Fixtures.PubNub({
+  subscribe_key: 'demo',
+  publish_key: 'demo',
   channel: 'rickshaw-channel-2',
+  history: true,
   graph: graph,
-  connect: init
+  connect: init,
 });
 
 </script>
