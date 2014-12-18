@@ -33,7 +33,7 @@ var graph = new Rickshaw.Graph( {
 
 graph.render();
 
-var pubsub = new Rickshaw.Fixtures.PubNub({
+new Rickshaw.Fixtures.PubNub({
     channel: 'rickshaw-channel-1',
     graph: graph
 });
