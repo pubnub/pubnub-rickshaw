@@ -31,15 +31,11 @@ var graph = new Rickshaw.Graph( {
     ]
 });
 
-
-function init() {
-    graph.render();
-}
+graph.render();
 
 var pubsub = new Rickshaw.Fixtures.PubNub({
     channel: 'rickshaw-channel-1',
-    graph: graph,
-    connect: init
+    graph: graph
 });
 
 </script>
