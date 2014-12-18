@@ -7,7 +7,7 @@ Make your Rickshaw graphs realtime with PubNub.
 
 ## Quickstart
 
-```
+```js
 new Rickshaw.Fixtures.PubNub({
   graph: graph,
   subscribe_key: 'demo',
@@ -29,7 +29,7 @@ Parameter | Value | Default
 
 Include the Javascripts within your file.
 
-```
+```js
 <!doctype html>
 <script src="http://cdn.pubnub.com/pubnub.min.js"></script>
 <script src="../vendor/d3.v3.js"></script>
@@ -37,8 +37,6 @@ Include the Javascripts within your file.
 <script src="../src/js/Rickshaw.Fixtures.PubNub.js"></script>
 
 <div id="chart"></div>
-
-
 
 <script>
 var graph = new Rickshaw.Graph( {
@@ -85,8 +83,7 @@ Check out our docs for more info:
 
 http://www.pubnub.com/docs
 
-
-```
+```js
 var pubnub = PUBNUB.init({
   publish_key: 'demo',
   subscribe_key: 'demo'
