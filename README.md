@@ -81,7 +81,7 @@ new Rickshaw.Fixtures.PubNub({
 
 Check out the [PubNub Extension demo](https://github.com/pubnub/pubnub-rickshaw/blob/master/rickshaw/examples/pubnub-extensions.html) for an example of using the PubNub fixture within a complicated Rickshaw setup.
 
-Note that we need to initialize other fixtures within our connection callback. Some fixtures will cause errors if they are initialized before there is data in the chart.
+Note that you need to initialize other fixtures within our connection callback. Some fixtures will cause errors if they are initialized before there is data in the chart.
 
 ## Publish Messages
 
