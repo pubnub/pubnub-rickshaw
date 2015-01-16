@@ -20,7 +20,7 @@ new Rickshaw.Fixtures.PubNub({
 Parameter | Value | Default
 | :------------ |:---------------:| -----:|
 | graph | Your Rickshaw.Graph. Works just like the extensions included in Rickshaw examples. | ```undefined```
-| subscribe_key | Your PubNub subscribe_key | ```'demo'```
+| subscribe_key | Your PubNub subscribe_key | ```demo```
 | limit | The size of your buffer. How many values on the x series to display before shifting data. | ```50```
 | history | Use PubNub history call to retrieve last ```limit``` messages. Requires (PubNub storage)[http://www.pubnub.com/how-it-works/storage-and-playback/] to be enabled. | ```false```
 | ready | This function fires once data has been retrieved from PubNub. Some extensions assume the graph will have data when they are initialized, so we ca n put them inside here. | ```function(){}```
@@ -35,6 +35,8 @@ Include the Javascripts within your file.
 <script src="../rickshaw.min.js"></script>
 <script src="../src/js/Rickshaw.Fixtures.PubNub.js"></script>
 ```
+
+Define a Rickshaw chart element as normal.
 
 ```html
 <div id="chart"></div>
@@ -60,16 +62,26 @@ var graph = new Rickshaw.Graph( {
         }
     ]
 });
-
 graph.render();
+</script>
+```
 
+Add PubNub Fixture.
+
+```js
+<script>
 new Rickshaw.Fixtures.PubNub({
   channel: 'rickshaw-channel-1',
   graph: graph
 });
-
 </script>
 ```
+
+## Kitchen Sink
+
+Check out the [PubNub Extension demo](https://github.com/pubnub/pubnub-rickshaw/blob/master/rickshaw/examples/pubnub-extensions.html) for an example of using the PubNub fixture within a complicated Rickshaw setup.
+
+Note that we need to initialize other fixtures within our connection callback. Some fixtures will cause errors if they are initialized before there is data in the chart.
 
 ## Publish Messages
 
