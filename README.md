@@ -89,7 +89,7 @@ This uses the included PubNub library to pubnub.publish()
 packets to the pubnub.subscribe() call waiting inside the 
 Rickshaw framework. 
 
-Notice how the subscribe_key and channel name matches.
+Notice how the ```subscribe_key``` and ```channel```  matches.
 
 You probably want to publish data from the back-end instead. 
 Check out our docs for more info:
