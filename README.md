@@ -21,21 +21,22 @@ Parameter | Value | Default
 | :------------ |:---------------:| -----:|
 | graph | Your Rickshaw.Graph. Works just like the extensions included in Rickshaw examples. | ```undefined```
 | subscribe_key | Your PubNub subscribe_key | ```'demo'```
-| limit | How many values on the x series to display before shifting data | ```50```
-| history | Use PubNub history call to retrieve last ```limit``` messages. Requires PubNub storage to be enabled. | ```false```
-| connect | This function fires once data has been retrieved from PubNub. Some extensions assume the graph will have data when they are initialized, so we ca n put them inside here. | ```function(){}```
+| limit | The size of your buffer. How many values on the x series to display before shifting data. | ```50```
+| history | Use PubNub history call to retrieve last ```limit``` messages. Requires (PubNub storage)[http://www.pubnub.com/how-it-works/storage-and-playback/] to be enabled. | ```false```
+| ready | This function fires once data has been retrieved from PubNub. Some extensions assume the graph will have data when they are initialized, so we ca n put them inside here. | ```function(){}```
 
 ## Simple Example
 
 Include the Javascripts within your file.
 
 ```js
-<!doctype html>
 <script src="http://cdn.pubnub.com/pubnub.min.js"></script>
 <script src="../vendor/d3.v3.js"></script>
 <script src="../rickshaw.min.js"></script>
 <script src="../src/js/Rickshaw.Fixtures.PubNub.js"></script>
+```
 
+```html
 <div id="chart"></div>
 
 <script>
@@ -74,11 +75,11 @@ new Rickshaw.Fixtures.PubNub({
 
 This uses the included PubNub library to pubnub.publish() 
 packets to the pubnub.subscribe() call waiting inside the 
-framework. 
+Rickshaw framework. 
 
 Notice how the subscribe_key and channel name matches.
 
-You probably want to publish data from the backend instead. 
+You probably want to publish data from the back-end instead. 
 Check out our docs for more info:
 
 http://www.pubnub.com/docs
@@ -103,3 +104,11 @@ setInterval(function(){
 }, 1000);
 </script>
 ``` 
+
+## Customize Your Graph
+
+You can learn more about customizing your graph from [the official Rickshaw docs](https://github.com/shutterstock/rickshaw/blob/master/README.md).
+
+## Shutterstock Rickshaw
+
+Rickshaw Copyright (C) 2011-2013 by Shutterstock Images, LLC

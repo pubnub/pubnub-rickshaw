@@ -12,9 +12,8 @@ Rickshaw.Fixtures.PubNub = function (options) {
   options.subscribe_key = options.subscribe_key || 'demo';
   options.limit = options.limit || 50;
   options.history = options.history || false;
-  options.connect = options.connect || function () {};
+  options.ready = options.ready || function () {};
   options.channel = options.channel || false;
-  options.ready - options.ready || false;
 
   // initialize pubnub
   self.pubnub = PUBNUB.init({
@@ -39,12 +38,7 @@ Rickshaw.Fixtures.PubNub = function (options) {
            var start = payload[1];
            var end = payload[2];
 
-           // if msgs were retrieved, do something useful with them
-           if (msgs != undefined && msgs.length > 0) {
-
-             console.log(msgs.length);
-             console.log("start: " + start);
-             console.log("end: " + end);
+           if (msgs != undefined && msgs.length) {
 
              msgs.reverse();
 
@@ -57,7 +51,7 @@ Rickshaw.Fixtures.PubNub = function (options) {
            }
 
            // if 100 msgs were retrieved, there might be more; call history again
-           if (all_messages.length < options.limit) {
+           if (msgs.length && all_messages.length < options.limit) {
              getAllMessages(start);
            } else {
 
@@ -104,7 +98,7 @@ Rickshaw.Fixtures.PubNub = function (options) {
     }
 
     if(first) {
-      options.connect();
+      options.ready();
     }
     first = false;
 
@@ -122,6 +116,7 @@ Rickshaw.Fixtures.PubNub = function (options) {
   });
 
   if(options.history) {
+
     // fetch last page from pubnub
     self.page();
   }
