@@ -12,7 +12,7 @@ Rickshaw.Fixtures.PubNub = function (options) {
   options.subscribe_key = options.subscribe_key || 'demo';
   options.limit = options.limit || 50;
   options.history = options.history || false;
-  options.ready = options.ready || function () {};
+  options.connect = options.connect || function () {};
   options.channel = options.channel || false;
 
   // initialize pubnub
@@ -98,7 +98,7 @@ Rickshaw.Fixtures.PubNub = function (options) {
     }
 
     if(first) {
-      options.ready();
+      options.connect();
     }
     first = false;
 
