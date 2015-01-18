@@ -1,4 +1,4 @@
-Pubnub + Rickshaw
+PubNub + Rickshaw
 ===============
 
 Make your Rickshaw graphs realtime with PubNub.
