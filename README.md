@@ -18,11 +18,11 @@ new Rickshaw.Fixtures.PubNub({
 ```
 
 Parameter | Value | Default
-| :------------ |:---------------:| -----:|
+| :------------ |:---------------| -----:|
 | graph | Your Rickshaw.Graph. Works just like the extensions included in Rickshaw examples. | ```undefined```
 | subscribe_key | Your PubNub subscribe_key | ```demo```
 | limit | The size of your buffer. How many values on the x series to display before shifting data. | ```50```
-| history | Use PubNub history call to retrieve last ```limit``` messages. Requires (PubNub storage)[http://www.pubnub.com/how-it-works/storage-and-playback/] to be enabled. | ```false```
+| history | Use PubNub history call to retrieve last ```limit``` messages. Requires [PubNub storage](http://www.pubnub.com/how-it-works/storage-and-playback/) to be enabled. | ```false```
 | ready | This function fires once data has been retrieved from PubNub. Some extensions assume the graph will have data when they are initialized, so we ca n put them inside here. | ```function(){}```
 
 ## Simple Example
