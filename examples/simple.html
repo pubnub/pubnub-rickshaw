@@ -1,8 +1,9 @@
 <!doctype html>
-<script src="http://cdn.pubnub.com/pubnub.min.js"></script>
-<script src="../vendor/d3.v3.js"></script>
-<script src="../rickshaw.min.js"></script>
-<script src="../../Rickshaw.Fixtures.PubNub.js"></script>
+
+<script src="../bower_components/pubnub/web/pubnub.min.js"></script>
+<script src="../bower_components/d3/d3.min.js"></script>
+<script src="../bower_components/rickshaw/rickshaw.min.js"></script>
+<script src="../Rickshaw.Fixtures.PubNub.js"></script>
 
 <div id="chart"></div>
 
@@ -44,13 +45,13 @@ new Rickshaw.Fixtures.PubNub({
 
   ===========
 
-  This uses the included PubNub library to pubnub.publish() 
-  packets to the pubnub.subscribe() call waiting inside the 
-  framework. 
+  This uses the included PubNub library to pubnub.publish()
+  packets to the pubnub.subscribe() call waiting inside the
+  framework.
 
   Notice how the subscribe_key and channel name matches.
 
-  You probably want to publish data from the backend instead. 
+  You probably want to publish data from the backend instead.
   Check out our docs for more info:
 
   http://www.pubnub.com/docs
@@ -67,7 +68,7 @@ setInterval(function(){
     channel: 'rickshaw-channel-1',
     message: {
       y: [
-        Math.random() * 99, 
+        Math.random() * 99,
         Math.random() * 99
       ],
       x: new Date().getTime()
