@@ -1,0 +1,27 @@
+{
+  "name": "pubnub-rickshaw",
+  "version": "0.1.0",
+  "homepage": "https://github.com/pubnub/pubnub-rickshaw",
+  "authors": [
+    "Ian Jennings <ian@meetjennings.com>"
+  ],
+  "main": "Rickshaw.Fixtures.PubNub.js",
+  "keywords": [
+    "pubnub",
+    "realtime",
+    "charts",
+    "time",
+    "series",
+    "time-series",
+    "graph",
+    "streaming"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
